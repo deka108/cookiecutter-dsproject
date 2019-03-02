@@ -1,0 +1,7 @@
+{
+  "project_name": "my-project",
+  "install_jupyter": ["no", "notebook", "jupyterlab"],
+  "pkg_name": "{{ cookiecutter.project_name|replace('-', '_') }}",
+  "cls_name": "{{ cookiecutter.project_name|title|replace('-', '')|replace('_','') }}",
+  "app_name": "{{ cookiecutter.project_name|replace('_', '-') }}"
+}

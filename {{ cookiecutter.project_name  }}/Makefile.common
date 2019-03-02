@@ -112,6 +112,24 @@ help-pipenv: ##@Python Common pipenv commands
 	@echo "--rm			Remove a virtualenv"
 	@echo "clean			Uninstall packages not in Pipfile"
 
+install-jupyter: ##@Python Install jupyter package
+	@pipenv install jupyter --dev
+	@mkdir -p notebooks
+
+install-jupyterlab: ##@Python Install jupyterlab package
+	@pipenv install jupyterlab --dev
+	@mkdir -p notebooks
+
+check-notebooks: ##Development Check if jupyter notebooks exist under this project
+	@[[ -d notebooks ]] || { echo "Please run \`make install-jupyter\` or \`make install-jupyterlab\` before running \
+	\`make start-jupyter\` or \`make start-jupyterlab\` " >&2; exit 1; }
+
+start-jupyter: check-notebooks ##@Development Starts jupyter notebook server
+	@jupyter notebook notebooks
+
+start-jupyterlab: check-notebooks ##@Development Starts jupyter lab server
+	@jupyter lab notebooks
+
 # Setup Pipenv: End
 
 # Development Commands: Start
